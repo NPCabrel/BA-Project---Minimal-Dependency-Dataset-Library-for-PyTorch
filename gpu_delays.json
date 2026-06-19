@@ -1,0 +1,67 @@
+{
+  "H100": {
+    "models": {
+      "resnet152": {
+        "mean_ms": 312.29,
+        "std_ms": 0.98
+      },
+      "resnet34": {
+        "mean_ms": 83.94,
+        "std_ms": 0.29
+      },
+      "resnet50": {
+        "mean_ms": 140.27,
+        "std_ms": 0.82
+      },
+      "resnet18": {
+        "mean_ms": 53.63,
+        "std_ms": 0.11
+      },
+      "resnet101": {
+        "mean_ms": 222.01,
+        "std_ms": 0.97
+      },
+      "vit_b_16": {
+        "mean_ms": 793.5,
+        "std_ms": 3.26
+      },
+      "vit_b_32": {
+        "mean_ms": 198.51,
+        "std_ms": 1.03
+      }
+    },
+    "default_mean_ms": 257.74,
+    "default_std_ms": 1.07,
+    "num_models_benchmarked": 7
+  },
+  "RTXA6000": {
+    "models": {
+      "resnet50": {
+        "mean_ms": 573.05,
+        "std_ms": 3.21
+      }
+    },
+    "default_mean_ms": 573.05,
+    "default_std_ms": 3.21,
+    "num_models_benchmarked": 1
+  },
+  "RTXB6000": {
+    "models": {
+      "resnet34": {
+        "mean_ms": 108.43,
+        "std_ms": 0.5
+      },
+      "resnet50": {
+        "mean_ms": 214.32,
+        "std_ms": 0.35
+      },
+      "resnet18": {
+        "mean_ms": 69.06,
+        "std_ms": 0.12
+      }
+    },
+    "default_mean_ms": 130.6,
+    "default_std_ms": 0.32,
+    "num_models_benchmarked": 3
+  }
+}
