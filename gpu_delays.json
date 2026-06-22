@@ -1,6 +1,139 @@
 {
+  "A100-40GB": {
+    "models": {
+      "swin_t": {
+        "mean_ms": 722.03,
+        "std_ms": 0.85
+      },
+      "resnet50": {
+        "mean_ms": 280.31,
+        "std_ms": 0.33
+      },
+      "resnet101": {
+        "mean_ms": 437.88,
+        "std_ms": 0.65
+      },
+      "resnet34": {
+        "mean_ms": 155.81,
+        "std_ms": 0.35
+      },
+      "vit_b_16": {
+        "mean_ms": 1781.74,
+        "std_ms": 2.02
+      },
+      "vit_b_32": {
+        "mean_ms": 448.81,
+        "std_ms": 0.42
+      },
+      "vit_l_32": {
+        "mean_ms": 1492.43,
+        "std_ms": 0.7
+      },
+      "resnet18": {
+        "mean_ms": 97.06,
+        "std_ms": 0.15
+      },
+      "swin_v2_t": {
+        "mean_ms": 887.7,
+        "std_ms": 0.88
+      }
+    },
+    "default_mean_ms": 700.42,
+    "default_std_ms": 0.71,
+    "num_models_benchmarked": 9
+  },
+  "A40": {
+    "models": {
+      "swin_t": {
+        "mean_ms": 978.86,
+        "std_ms": 1.04
+      },
+      "vit_b_32": {
+        "mean_ms": 479.11,
+        "std_ms": 0.45
+      }
+    },
+    "default_mean_ms": 728.99,
+    "default_std_ms": 0.74,
+    "num_models_benchmarked": 2
+  },
+  "B200": {
+    "models": {
+      "swin_b": {
+        "mean_ms": 625.08,
+        "std_ms": 0.22
+      },
+      "vit_l_32": {
+        "mean_ms": 467.12,
+        "std_ms": 0.2
+      },
+      "swin_v2_t": {
+        "mean_ms": 300.67,
+        "std_ms": 0.23
+      },
+      "vit_b_16": {
+        "mean_ms": 549.31,
+        "std_ms": 0.21
+      },
+      "resnet50": {
+        "mean_ms": 87.6,
+        "std_ms": 0.07
+      },
+      "resnet152": {
+        "mean_ms": 166.98,
+        "std_ms": 0.38
+      },
+      "swin_s": {
+        "mean_ms": 414.68,
+        "std_ms": 0.11
+      },
+      "vit_l_16": {
+        "mean_ms": 1835.18,
+        "std_ms": 6.89
+      },
+      "vit_b_32": {
+        "mean_ms": 143.51,
+        "std_ms": 0.08
+      },
+      "resnet18": {
+        "mean_ms": 38.74,
+        "std_ms": 0.05
+      },
+      "swin_t": {
+        "mean_ms": 233.02,
+        "std_ms": 0.11
+      },
+      "resnet34": {
+        "mean_ms": 55.97,
+        "std_ms": 0.13
+      },
+      "swin_v2_b": {
+        "mean_ms": 795.1,
+        "std_ms": 0.36
+      },
+      "resnet101": {
+        "mean_ms": 124.16,
+        "std_ms": 0.24
+      },
+      "swin_v2_s": {
+        "mean_ms": 542.61,
+        "std_ms": 0.23
+      },
+      "vit_h_14": {
+        "mean_ms": 5005.99,
+        "std_ms": 10.62
+      }
+    },
+    "default_mean_ms": 711.61,
+    "default_std_ms": 1.26,
+    "num_models_benchmarked": 16
+  },
   "H100": {
     "models": {
+      "vit_l_16": {
+        "mean_ms": 2769.24,
+        "std_ms": 10.8
+      },
       "resnet152": {
         "mean_ms": 312.29,
         "std_ms": 0.98
@@ -21,35 +154,193 @@
         "mean_ms": 222.01,
         "std_ms": 0.97
       },
+      "swin_v2_s": {
+        "mean_ms": 725.78,
+        "std_ms": 2.89
+      },
       "vit_b_16": {
         "mean_ms": 793.5,
         "std_ms": 3.26
       },
+      "swin_t": {
+        "mean_ms": 316.81,
+        "std_ms": 1.43
+      },
+      "vit_l_32": {
+        "mean_ms": 682.24,
+        "std_ms": 2.74
+      },
+      "swin_v2_t": {
+        "mean_ms": 401.82,
+        "std_ms": 1.99
+      },
+      "swin_b": {
+        "mean_ms": 825.2,
+        "std_ms": 3.15
+      },
       "vit_b_32": {
         "mean_ms": 198.51,
         "std_ms": 1.03
+      },
+      "swin_v2_b": {
+        "mean_ms": 1077.78,
+        "std_ms": 3.9
+      },
+      "swin_s": {
+        "mean_ms": 559.0,
+        "std_ms": 1.97
       }
     },
-    "default_mean_ms": 257.74,
-    "default_std_ms": 1.07,
-    "num_models_benchmarked": 7
+    "default_mean_ms": 610.8,
+    "default_std_ms": 2.42,
+    "num_models_benchmarked": 15
+  },
+  "H200": {
+    "models": {
+      "vit_l_16": {
+        "mean_ms": 2359.31,
+        "std_ms": 0.38
+      },
+      "swin_t": {
+        "mean_ms": 279.78,
+        "std_ms": 0.08
+      },
+      "swin_s": {
+        "mean_ms": 494.26,
+        "std_ms": 0.2
+      },
+      "resnet101": {
+        "mean_ms": 191.36,
+        "std_ms": 0.2
+      },
+      "vit_b_16": {
+        "mean_ms": 714.39,
+        "std_ms": 0.16
+      },
+      "resnet152": {
+        "mean_ms": 264.95,
+        "std_ms": 0.2
+      },
+      "swin_v2_s": {
+        "mean_ms": 643.15,
+        "std_ms": 0.25
+      },
+      "vit_b_32": {
+        "mean_ms": 190.7,
+        "std_ms": 0.06
+      },
+      "swin_v2_b": {
+        "mean_ms": 950.02,
+        "std_ms": 0.52
+      },
+      "vit_l_32": {
+        "mean_ms": 627.52,
+        "std_ms": 0.09
+      },
+      "swin_v2_t": {
+        "mean_ms": 359.77,
+        "std_ms": 0.13
+      },
+      "resnet18": {
+        "mean_ms": 51.81,
+        "std_ms": 0.06
+      },
+      "resnet50": {
+        "mean_ms": 125.23,
+        "std_ms": 0.16
+      },
+      "swin_b": {
+        "mean_ms": 737.46,
+        "std_ms": 0.17
+      },
+      "resnet34": {
+        "mean_ms": 77.98,
+        "std_ms": 0.07
+      }
+    },
+    "default_mean_ms": 537.85,
+    "default_std_ms": 0.18,
+    "num_models_benchmarked": 15
+  },
+  "RTX3090": {
+    "models": {
+      "vit_l_32": {
+        "mean_ms": 1530.31,
+        "std_ms": 28.76
+      },
+      "vit_b_32": {
+        "mean_ms": 408.28,
+        "std_ms": 0.82
+      },
+      "resnet34": {
+        "mean_ms": 305.09,
+        "std_ms": 1.04
+      },
+      "resnet50": {
+        "mean_ms": 504.85,
+        "std_ms": 1.02
+      },
+      "resnet18": {
+        "mean_ms": 173.15,
+        "std_ms": 0.4
+      }
+    },
+    "default_mean_ms": 584.34,
+    "default_std_ms": 6.41,
+    "num_models_benchmarked": 5
   },
   "RTXA6000": {
     "models": {
+      "resnet101": {
+        "mean_ms": 903.96,
+        "std_ms": 0.65
+      },
       "resnet50": {
-        "mean_ms": 573.05,
-        "std_ms": 3.21
+        "mean_ms": 573.29,
+        "std_ms": 1.91
+      },
+      "vit_b_16": {
+        "mean_ms": 1897.44,
+        "std_ms": 1.79
+      },
+      "resnet152": {
+        "mean_ms": 1283.99,
+        "std_ms": 0.46
+      },
+      "vit_l_32": {
+        "mean_ms": 1461.89,
+        "std_ms": 4.33
+      },
+      "swin_v2_t": {
+        "mean_ms": 1217.09,
+        "std_ms": 1.22
+      },
+      "swin_s": {
+        "mean_ms": 1581.3,
+        "std_ms": 3.05
+      },
+      "resnet34": {
+        "mean_ms": 285.7,
+        "std_ms": 1.04
+      },
+      "resnet18": {
+        "mean_ms": 173.16,
+        "std_ms": 0.25
       }
     },
-    "default_mean_ms": 573.05,
-    "default_std_ms": 3.21,
-    "num_models_benchmarked": 1
+    "default_mean_ms": 1041.98,
+    "default_std_ms": 1.63,
+    "num_models_benchmarked": 9
   },
   "RTXB6000": {
     "models": {
       "resnet34": {
         "mean_ms": 108.43,
         "std_ms": 0.5
+      },
+      "vit_l_16": {
+        "mean_ms": 1884.06,
+        "std_ms": 0.61
       },
       "resnet50": {
         "mean_ms": 214.32,
@@ -58,10 +349,54 @@
       "resnet18": {
         "mean_ms": 69.06,
         "std_ms": 0.12
+      },
+      "swin_s": {
+        "mean_ms": 518.71,
+        "std_ms": 0.13
+      },
+      "vit_b_32": {
+        "mean_ms": 143.04,
+        "std_ms": 0.64
+      },
+      "swin_v2_b": {
+        "mean_ms": 1038.97,
+        "std_ms": 0.15
+      },
+      "vit_l_32": {
+        "mean_ms": 452.24,
+        "std_ms": 0.17
+      },
+      "vit_b_16": {
+        "mean_ms": 621.0,
+        "std_ms": 0.13
+      },
+      "swin_v2_t": {
+        "mean_ms": 428.01,
+        "std_ms": 0.11
+      },
+      "swin_v2_s": {
+        "mean_ms": 737.77,
+        "std_ms": 0.14
+      },
+      "resnet101": {
+        "mean_ms": 324.94,
+        "std_ms": 0.09
+      },
+      "swin_b": {
+        "mean_ms": 750.79,
+        "std_ms": 0.1
+      },
+      "swin_t": {
+        "mean_ms": 308.75,
+        "std_ms": 0.09
+      },
+      "resnet152": {
+        "mean_ms": 455.28,
+        "std_ms": 0.13
       }
     },
-    "default_mean_ms": 130.6,
-    "default_std_ms": 0.32,
-    "num_models_benchmarked": 3
+    "default_mean_ms": 537.02,
+    "default_std_ms": 0.23,
+    "num_models_benchmarked": 15
   }
 }
