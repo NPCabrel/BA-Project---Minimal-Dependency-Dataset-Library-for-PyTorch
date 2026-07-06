@@ -1,6 +1,6 @@
 """
-Script d'analyse des performances de data loading.
-Mesure : temps de chargement vs temps de calcul, throughput, GPU utilization.
+Script analysis for performances of data loading.
+Mesure : chargement time vs calculus time , throughput, GPU utilization.
 """
 import torch
 import torch.nn as nn
@@ -12,11 +12,12 @@ import os
 import time
 
 # ============================================================
-# CONFIGURATION (identique au job 3005470 pour comparaison)
+# CONFIGURATION (identic to job 3005470 for comparison)
 # ============================================================
+
 DATA_DIR = "/ds-sds/images/imagenet"
 BATCH_SIZE = 256
-NUM_EPOCHS = 3  # Juste 3 epochs pour l'analyse
+NUM_EPOCHS = 3  # Just 3 epochs for analysis
 LEARNING_RATE = 0.1
 MOMENTUM = 0.9
 WEIGHT_DECAY = 1e-4
@@ -31,7 +32,7 @@ print(f"Num workers: {NUM_WORKERS}")
 print(f"Epochs to run: {NUM_EPOCHS}")
 print("=" * 60)
 
-# Data loading (mêmes transformations que le job original)
+# Data loading (same transformations as the original job )
 train_transforms = transforms.Compose([
     transforms.RandomResizedCrop(224),
     transforms.RandomHorizontalFlip(),
@@ -65,13 +66,14 @@ optimizer = optim.SGD(model.parameters(), lr=LEARNING_RATE, momentum=MOMENTUM, w
 # ============================================================
 # PROFILING LOOP
 # ============================================================
+
 print("\n" + "=" * 60)
 print("STARTING PROFILING RUN (3 epochs)")
 print("=" * 60)
 print(f"{'Epoch':<8} {'Batch':<10} {'Data(s)':<10} {'Compute(s)':<12} {'Total(s)':<10} {'GPU_Wait%':<12} {'Img/s':<10}")
 print("-" * 70)
 
-# Warmup: 50 batches pour stabiliser
+# Warmup: 50 batches for stabilize
 print("Warmup (50 batches)...")
 model.train()
 warmup_iter = iter(train_loader)
@@ -119,7 +121,7 @@ for epoch in range(NUM_EPOCHS):
         
         data_start = time.time()
     
-    # Stats de l'epoch
+    # Stats for the epoch
     avg_data = epoch_data_time / len(train_loader)
     avg_compute = epoch_compute_time / len(train_loader)
     avg_total = avg_data + avg_compute
