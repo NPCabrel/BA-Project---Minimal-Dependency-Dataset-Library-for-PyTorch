@@ -8,7 +8,7 @@ import random
 # Add project dir to path for imports
 sys.path.insert(0, os.path.expanduser("~/bachelor-project"))
 
-from file_io import BinaryReader, BinaryWriter
+from benchmarks.storage.file_io import BinaryReader, BinaryWriter
 # Import the tutor's classes from dataset_tutor.py (we'll save it separately)
 # For now, we'll define them here since they're in dataset.txt
 import msgpack
