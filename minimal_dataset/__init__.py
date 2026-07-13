@@ -12,3 +12,5 @@ Usage:
 from .dataset import BaseDataset
 from .sampler import LockFreeSampler
 from .dataloader import DataLoader
+from .monitored_queue import MonitoredQueue
+from .metrics import MetricsTracker, WorkerMetrics
