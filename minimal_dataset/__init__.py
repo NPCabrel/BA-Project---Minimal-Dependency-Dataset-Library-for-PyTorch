@@ -1,0 +1,14 @@
+"""
+Minimal Dependency Dataset Library for PyTorch.
+
+Usage:
+    from minimal_dataset import BaseDataset, DataLoader
+
+    dataset = BaseDataset("/path/to/data")
+    loader = DataLoader(dataset, batch_size=32, num_workers=4)
+    for images, labels in loader:
+        # train...
+"""
+from .dataset import BaseDataset
+from .sampler import LockFreeSampler
+from .dataloader import DataLoader
