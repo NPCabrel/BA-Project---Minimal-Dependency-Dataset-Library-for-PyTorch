@@ -2,122 +2,154 @@
   "A100-40GB": {
     "models": {
       "swin_t": {
-        "mean_ms": 722.03,
-        "std_ms": 0.85
+        "mean_ms": 723.95,
+        "std_ms": 0.77
       },
       "resnet50": {
-        "mean_ms": 280.31,
-        "std_ms": 0.33
+        "mean_ms": 280.75,
+        "std_ms": 0.32
       },
       "resnet101": {
         "mean_ms": 437.88,
-        "std_ms": 0.65
+        "std_ms": 0.6
       },
       "resnet34": {
-        "mean_ms": 155.81,
-        "std_ms": 0.35
+        "mean_ms": 155.64,
+        "std_ms": 0.33
       },
       "vit_b_16": {
-        "mean_ms": 1781.74,
-        "std_ms": 2.02
-      },
-      "vit_b_32": {
-        "mean_ms": 448.81,
-        "std_ms": 0.42
-      },
-      "vit_l_32": {
-        "mean_ms": 1492.43,
-        "std_ms": 0.7
-      },
-      "resnet18": {
-        "mean_ms": 97.06,
-        "std_ms": 0.15
+        "mean_ms": 1784.59,
+        "std_ms": 1.56
       },
       "swin_v2_t": {
-        "mean_ms": 887.7,
-        "std_ms": 0.88
+        "mean_ms": 889.73,
+        "std_ms": 0.92
+      },
+      "vit_b_32": {
+        "mean_ms": 449.45,
+        "std_ms": 0.47
+      },
+      "resnet18": {
+        "mean_ms": 97.26,
+        "std_ms": 0.16
+      },
+      "vit_l_32": {
+        "mean_ms": 1495.3,
+        "std_ms": 1.84
       }
     },
-    "default_mean_ms": 700.42,
-    "default_std_ms": 0.71,
+    "default_mean_ms": 701.62,
+    "default_std_ms": 0.77,
     "num_models_benchmarked": 9
   },
   "A40": {
     "models": {
-      "swin_t": {
-        "mean_ms": 978.86,
-        "std_ms": 1.04
-      },
       "vit_b_32": {
-        "mean_ms": 479.11,
-        "std_ms": 0.45
+        "mean_ms": 473.19,
+        "std_ms": 0.83
+      },
+      "vit_l_32": {
+        "mean_ms": 1513.05,
+        "std_ms": 2.96
+      },
+      "resnet101": {
+        "mean_ms": 950.99,
+        "std_ms": 0.56
+      },
+      "swin_v2_t": {
+        "mean_ms": 1270.46,
+        "std_ms": 1.28
+      },
+      "swin_t": {
+        "mean_ms": 973.74,
+        "std_ms": 0.92
+      },
+      "resnet34": {
+        "mean_ms": 297.97,
+        "std_ms": 0.24
+      },
+      "resnet18": {
+        "mean_ms": 180.85,
+        "std_ms": 0.16
+      },
+      "resnet152": {
+        "mean_ms": 1338.07,
+        "std_ms": 0.5
+      },
+      "vit_b_16": {
+        "mean_ms": 1970.23,
+        "std_ms": 2.64
+      },
+      "swin_s": {
+        "mean_ms": 1632.47,
+        "std_ms": 1.2
       }
     },
-    "default_mean_ms": 728.99,
-    "default_std_ms": 0.74,
-    "num_models_benchmarked": 2
+    "default_mean_ms": 1060.1,
+    "default_std_ms": 1.13,
+    "num_models_benchmarked": 10
   },
   "B200": {
     "models": {
       "swin_b": {
-        "mean_ms": 625.08,
-        "std_ms": 0.22
-      },
-      "vit_l_32": {
-        "mean_ms": 467.12,
-        "std_ms": 0.2
-      },
-      "swin_v2_t": {
-        "mean_ms": 300.67,
+        "mean_ms": 625.27,
         "std_ms": 0.23
       },
-      "vit_b_16": {
-        "mean_ms": 549.31,
+      "resnet152": {
+        "mean_ms": 166.96,
+        "std_ms": 0.28
+      },
+      "vit_b_32": {
+        "mean_ms": 143.44,
+        "std_ms": 0.11
+      },
+      "vit_l_32": {
+        "mean_ms": 467.03,
         "std_ms": 0.21
+      },
+      "swin_s": {
+        "mean_ms": 415.02,
+        "std_ms": 0.19
+      },
+      "swin_v2_t": {
+        "mean_ms": 300.94,
+        "std_ms": 0.17
+      },
+      "vit_b_16": {
+        "mean_ms": 549.41,
+        "std_ms": 0.22
       },
       "resnet50": {
         "mean_ms": 87.6,
         "std_ms": 0.07
       },
-      "resnet152": {
-        "mean_ms": 166.98,
-        "std_ms": 0.38
-      },
-      "swin_s": {
-        "mean_ms": 414.68,
-        "std_ms": 0.11
+      "resnet34": {
+        "mean_ms": 56.0,
+        "std_ms": 0.1
       },
       "vit_l_16": {
-        "mean_ms": 1835.18,
-        "std_ms": 6.89
-      },
-      "vit_b_32": {
-        "mean_ms": 143.51,
-        "std_ms": 0.08
-      },
-      "resnet18": {
-        "mean_ms": 38.74,
-        "std_ms": 0.05
-      },
-      "swin_t": {
-        "mean_ms": 233.02,
-        "std_ms": 0.11
-      },
-      "resnet34": {
-        "mean_ms": 55.97,
-        "std_ms": 0.13
-      },
-      "swin_v2_b": {
-        "mean_ms": 795.1,
-        "std_ms": 0.36
+        "mean_ms": 1834.95,
+        "std_ms": 6.23
       },
       "resnet101": {
-        "mean_ms": 124.16,
-        "std_ms": 0.24
+        "mean_ms": 124.08,
+        "std_ms": 0.19
+      },
+      "resnet18": {
+        "mean_ms": 38.78,
+        "std_ms": 0.04
+      },
+      "swin_v2_b": {
+        "mean_ms": 794.89,
+        "std_ms": 0.39
+      },
+      "swin_t": {
+        "mean_ms": 232.86,
+        "std_ms": 0.12
       },
       "swin_v2_s": {
-        "mean_ms": 542.61,
-        "std_ms": 0.23
+        "mean_ms": 542.53,
+        "std_ms": 0.26
       },
       "vit_h_14": {
         "mean_ms": 5005.99,
@@ -125,168 +157,278 @@
       }
     },
     "default_mean_ms": 711.61,
-    "default_std_ms": 1.26,
+    "default_std_ms": 1.22,
     "num_models_benchmarked": 16
   },
   "H100": {
     "models": {
       "vit_l_16": {
-        "mean_ms": 2769.24,
-        "std_ms": 10.8
-      },
-      "resnet152": {
-        "mean_ms": 312.29,
-        "std_ms": 0.98
-      },
-      "resnet34": {
-        "mean_ms": 83.94,
-        "std_ms": 0.29
-      },
-      "resnet50": {
-        "mean_ms": 140.27,
-        "std_ms": 0.82
-      },
-      "resnet18": {
-        "mean_ms": 53.63,
-        "std_ms": 0.11
-      },
-      "resnet101": {
-        "mean_ms": 222.01,
-        "std_ms": 0.97
-      },
-      "swin_v2_s": {
-        "mean_ms": 725.78,
-        "std_ms": 2.89
-      },
-      "vit_b_16": {
-        "mean_ms": 793.5,
-        "std_ms": 3.26
-      },
-      "swin_t": {
-        "mean_ms": 316.81,
-        "std_ms": 1.43
-      },
-      "vit_l_32": {
-        "mean_ms": 682.24,
-        "std_ms": 2.74
+        "mean_ms": 2767.04,
+        "std_ms": 8.42
       },
       "swin_v2_t": {
-        "mean_ms": 401.82,
-        "std_ms": 1.99
+        "mean_ms": 389.36,
+        "std_ms": 1.37
+      },
+      "resnet152": {
+        "mean_ms": 307.38,
+        "std_ms": 0.64
+      },
+      "resnet50": {
+        "mean_ms": 140.09,
+        "std_ms": 0.55
+      },
+      "resnet101": {
+        "mean_ms": 218.97,
+        "std_ms": 0.61
+      },
+      "vit_b_16": {
+        "mean_ms": 751.82,
+        "std_ms": 2.29
       },
       "swin_b": {
-        "mean_ms": 825.2,
-        "std_ms": 3.15
+        "mean_ms": 785.97,
+        "std_ms": 2.22
+      },
+      "resnet34": {
+        "mean_ms": 83.11,
+        "std_ms": 0.23
+      },
+      "resnet18": {
+        "mean_ms": 53.26,
+        "std_ms": 0.11
+      },
+      "vit_l_32": {
+        "mean_ms": 650.14,
+        "std_ms": 1.89
       },
       "vit_b_32": {
-        "mean_ms": 198.51,
-        "std_ms": 1.03
+        "mean_ms": 192.99,
+        "std_ms": 0.79
       },
-      "swin_v2_b": {
-        "mean_ms": 1077.78,
-        "std_ms": 3.9
+      "swin_t": {
+        "mean_ms": 305.05,
+        "std_ms": 1.1
+      },
+      "swin_v2_s": {
+        "mean_ms": 694.77,
+        "std_ms": 2.04
       },
       "swin_s": {
-        "mean_ms": 559.0,
-        "std_ms": 1.97
+        "mean_ms": 533.22,
+        "std_ms": 1.65
+      },
+      "swin_v2_b": {
+        "mean_ms": 1078.99,
+        "std_ms": 3.83
       }
     },
-    "default_mean_ms": 610.8,
-    "default_std_ms": 2.42,
+    "default_mean_ms": 596.81,
+    "default_std_ms": 1.85,
     "num_models_benchmarked": 15
   },
   "H200": {
     "models": {
       "vit_l_16": {
-        "mean_ms": 2359.31,
-        "std_ms": 0.38
+        "mean_ms": 2289.55,
+        "std_ms": 0.57
+      },
+      "swin_v2_s": {
+        "mean_ms": 625.03,
+        "std_ms": 0.24
       },
       "swin_t": {
-        "mean_ms": 279.78,
-        "std_ms": 0.08
+        "mean_ms": 271.98,
+        "std_ms": 0.11
       },
       "swin_s": {
-        "mean_ms": 494.26,
+        "mean_ms": 480.15,
         "std_ms": 0.2
       },
       "resnet101": {
-        "mean_ms": 191.36,
+        "mean_ms": 187.25,
         "std_ms": 0.2
       },
-      "vit_b_16": {
-        "mean_ms": 714.39,
-        "std_ms": 0.16
-      },
-      "resnet152": {
-        "mean_ms": 264.95,
-        "std_ms": 0.2
-      },
-      "swin_v2_s": {
-        "mean_ms": 643.15,
-        "std_ms": 0.25
-      },
-      "vit_b_32": {
-        "mean_ms": 190.7,
-        "std_ms": 0.06
-      },
-      "swin_v2_b": {
-        "mean_ms": 950.02,
-        "std_ms": 0.52
+      "swin_b": {
+        "mean_ms": 715.86,
+        "std_ms": 0.23
       },
       "vit_l_32": {
-        "mean_ms": 627.52,
+        "mean_ms": 607.75,
+        "std_ms": 0.14
+      },
+      "swin_v2_t": {
+        "mean_ms": 350.19,
+        "std_ms": 0.13
+      },
+      "resnet50": {
+        "mean_ms": 122.09,
+        "std_ms": 0.12
+      },
+      "vit_b_32": {
+        "mean_ms": 184.89,
+        "std_ms": 0.09
+      },
+      "vit_b_16": {
+        "mean_ms": 691.88,
+        "std_ms": 0.24
+      },
+      "resnet152": {
+        "mean_ms": 259.06,
+        "std_ms": 0.17
+      },
+      "swin_v2_b": {
+        "mean_ms": 921.58,
+        "std_ms": 0.43
+      },
+      "resnet18": {
+        "mean_ms": 50.32,
+        "std_ms": 0.06
+      },
+      "resnet34": {
+        "mean_ms": 76.43,
+        "std_ms": 0.08
+      }
+    },
+    "default_mean_ms": 522.27,
+    "default_std_ms": 0.2,
+    "num_models_benchmarked": 15
+  },
+  "L40S": {
+    "models": {
+      "vit_b_32": {
+        "mean_ms": 271.87,
+        "std_ms": 1.92
+      },
+      "swin_s": {
+        "mean_ms": 1081.54,
+        "std_ms": 1.7
+      },
+      "resnet101": {
+        "mean_ms": 676.72,
+        "std_ms": 0.44
+      },
+      "vit_b_16": {
+        "mean_ms": 1145.45,
+        "std_ms": 3.64
+      },
+      "resnet152": {
+        "mean_ms": 953.71,
+        "std_ms": 0.37
+      },
+      "resnet50": {
+        "mean_ms": 444.45,
+        "std_ms": 0.25
+      },
+      "vit_l_32": {
+        "mean_ms": 872.01,
+        "std_ms": 2.87
+      },
+      "resnet34": {
+        "mean_ms": 191.53,
+        "std_ms": 0.14
+      },
+      "resnet18": {
+        "mean_ms": 120.4,
         "std_ms": 0.09
       },
       "swin_v2_t": {
-        "mean_ms": 359.77,
-        "std_ms": 0.13
+        "mean_ms": 885.44,
+        "std_ms": 0.71
       },
-      "resnet18": {
-        "mean_ms": 51.81,
-        "std_ms": 0.06
-      },
-      "resnet50": {
-        "mean_ms": 125.23,
-        "std_ms": 0.16
-      },
-      "swin_b": {
-        "mean_ms": 737.46,
-        "std_ms": 0.17
-      },
-      "resnet34": {
-        "mean_ms": 77.98,
-        "std_ms": 0.07
+      "swin_t": {
+        "mean_ms": 650.0,
+        "std_ms": 0.77
       }
     },
-    "default_mean_ms": 537.85,
-    "default_std_ms": 0.18,
-    "num_models_benchmarked": 15
+    "default_mean_ms": 663.01,
+    "default_std_ms": 1.17,
+    "num_models_benchmarked": 11
+  },
+  "NVIDIA_A100-SXM4-80GB": {
+    "models": {
+      "resnet152": {
+        "mean_ms": 526.9,
+        "std_ms": 0.47
+      },
+      "resnet50": {
+        "mean_ms": 241.96,
+        "std_ms": 0.18
+      },
+      "resnet34": {
+        "mean_ms": 138.52,
+        "std_ms": 0.14
+      },
+      "vit_l_32": {
+        "mean_ms": 1378.36,
+        "std_ms": 0.25
+      },
+      "swin_b": {
+        "mean_ms": 1889.41,
+        "std_ms": 0.39
+      },
+      "swin_t": {
+        "mean_ms": 662.25,
+        "std_ms": 0.21
+      },
+      "swin_v2_t": {
+        "mean_ms": 808.27,
+        "std_ms": 0.5
+      },
+      "swin_s": {
+        "mean_ms": 1169.5,
+        "std_ms": 0.28
+      },
+      "resnet101": {
+        "mean_ms": 376.76,
+        "std_ms": 0.37
+      },
+      "swin_v2_s": {
+        "mean_ms": 1446.18,
+        "std_ms": 1.38
+      },
+      "resnet18": {
+        "mean_ms": 87.53,
+        "std_ms": 0.08
+      },
+      "vit_b_32": {
+        "mean_ms": 416.18,
+        "std_ms": 0.21
+      },
+      "vit_b_16": {
+        "mean_ms": 1639.04,
+        "std_ms": 0.68
+      }
+    },
+    "default_mean_ms": 829.3,
+    "default_std_ms": 0.4,
+    "num_models_benchmarked": 13
   },
   "RTX3090": {
     "models": {
       "vit_l_32": {
-        "mean_ms": 1530.31,
-        "std_ms": 28.76
-      },
-      "vit_b_32": {
-        "mean_ms": 408.28,
-        "std_ms": 0.82
+        "mean_ms": 1455.78,
+        "std_ms": 15.37
       },
       "resnet34": {
-        "mean_ms": 305.09,
+        "mean_ms": 303.15,
+        "std_ms": 0.78
+      },
+      "vit_b_32": {
+        "mean_ms": 414.66,
         "std_ms": 1.04
       },
-      "resnet50": {
-        "mean_ms": 504.85,
-        "std_ms": 1.02
-      },
       "resnet18": {
-        "mean_ms": 173.15,
-        "std_ms": 0.4
+        "mean_ms": 171.28,
+        "std_ms": 0.38
+      },
+      "resnet50": {
+        "mean_ms": 502.33,
+        "std_ms": 0.75
       }
     },
-    "default_mean_ms": 584.34,
-    "default_std_ms": 6.41,
+    "default_mean_ms": 569.44,
+    "default_std_ms": 3.66,
     "num_models_benchmarked": 5
   },
   "RTXA6000": {
@@ -296,8 +438,8 @@
         "std_ms": 0.65
       },
       "resnet50": {
-        "mean_ms": 573.29,
-        "std_ms": 1.91
+        "mean_ms": 572.84,
+        "std_ms": 1.37
       },
       "vit_b_16": {
         "mean_ms": 1897.44,
@@ -328,74 +470,74 @@
         "std_ms": 0.25
       }
     },
-    "default_mean_ms": 1041.98,
-    "default_std_ms": 1.63,
+    "default_mean_ms": 1041.93,
+    "default_std_ms": 1.57,
     "num_models_benchmarked": 9
   },
   "RTXB6000": {
     "models": {
       "resnet34": {
-        "mean_ms": 108.43,
-        "std_ms": 0.5
+        "mean_ms": 107.39,
+        "std_ms": 0.29
+      },
+      "swin_b": {
+        "mean_ms": 750.23,
+        "std_ms": 0.31
       },
       "vit_l_16": {
-        "mean_ms": 1884.06,
-        "std_ms": 0.61
+        "mean_ms": 1882.61,
+        "std_ms": 0.85
       },
       "resnet50": {
-        "mean_ms": 214.32,
-        "std_ms": 0.35
+        "mean_ms": 214.04,
+        "std_ms": 0.21
       },
-      "resnet18": {
-        "mean_ms": 69.06,
+      "swin_t": {
+        "mean_ms": 309.15,
         "std_ms": 0.12
       },
+      "resnet18": {
+        "mean_ms": 68.58,
+        "std_ms": 0.14
+      },
+      "swin_v2_s": {
+        "mean_ms": 736.67,
+        "std_ms": 0.29
+      },
       "swin_s": {
-        "mean_ms": 518.71,
+        "mean_ms": 518.84,
         "std_ms": 0.13
       },
       "vit_b_32": {
-        "mean_ms": 143.04,
-        "std_ms": 0.64
+        "mean_ms": 142.89,
+        "std_ms": 0.36
       },
       "swin_v2_b": {
-        "mean_ms": 1038.97,
-        "std_ms": 0.15
-      },
-      "vit_l_32": {
-        "mean_ms": 452.24,
-        "std_ms": 0.17
+        "mean_ms": 1038.91,
+        "std_ms": 0.22
       },
       "vit_b_16": {
-        "mean_ms": 621.0,
-        "std_ms": 0.13
+        "mean_ms": 620.73,
+        "std_ms": 0.12
       },
-      "swin_v2_t": {
-        "mean_ms": 428.01,
-        "std_ms": 0.11
-      },
-      "swin_v2_s": {
-        "mean_ms": 737.77,
+      "vit_l_32": {
+        "mean_ms": 451.55,
         "std_ms": 0.14
       },
-      "resnet101": {
-        "mean_ms": 324.94,
-        "std_ms": 0.09
-      },
-      "swin_b": {
-        "mean_ms": 750.79,
-        "std_ms": 0.1
-      },
-      "swin_t": {
-        "mean_ms": 308.75,
-        "std_ms": 0.09
+      "swin_v2_t": {
+        "mean_ms": 428.0,
+        "std_ms": 0.11
       },
       "resnet152": {
-        "mean_ms": 455.28,
-        "std_ms": 0.13
+        "mean_ms": 455.34,
+        "std_ms": 0.12
+      },
+      "resnet101": {
+        "mean_ms": 324.91,
+        "std_ms": 0.09
       }
     },
-    "default_mean_ms": 537.02,
+    "default_mean_ms": 536.66,
     "default_std_ms": 0.23,
     "num_models_benchmarked": 15
   }
