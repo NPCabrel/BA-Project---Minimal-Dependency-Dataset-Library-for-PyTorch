@@ -76,30 +76,34 @@ class DataLoader:
             wm.record_idle(time.perf_counter() - put_start)
 
     def _orchestrator(self):
-        """Pull from staging queue, collate when batch ready."""
-        buffer = []
-        while not self._stop_event.is_set():
-            try:
-                sample = self.staging_queue.get(timeout=0.1)
-                buffer.append(sample)
+    	"""Pull from staging queue, collate when batch ready."""
+    	buffer = []
+    	while not self._stop_event.is_set():
+        	try:
+            		sample = self.staging_queue.get(timeout=0.1)
+            		buffer.append(sample)
+            		if len(buffer) >= self.batch_size:
+                	batch_samples = buffer[:self.batch_size]
+                	buffer = buffer[self.batch_size:]
+                	batch = self.collate_fn(batch_samples)
+                	self.batch_queue.put(batch)
+                	self._tracker.record_batch()
+        	except Exception:
+            		# Check if workers are done and queue is empty
+            		workers_done = all(
+                		not t.is_alive() for t in self._threads 
+                		if t != threading.current_thread() and t.name.startswith('worker')
+            		)
+            	if workers_done and self.staging_queue.qsize() == 0:
+                	break
+            	continue
 
-                if len(buffer) >= self.batch_size:
-                    batch_samples = buffer[:self.batch_size]
-                    buffer = buffer[self.batch_size:]
-
-                    batch = self.collate_fn(batch_samples)
-                    self.batch_queue.put(batch)
-                    self._tracker.record_batch()
-            except Exception:
-                # queue.Empty or other — continue polling
-                continue
-
-        # Flush remaining
-        while len(buffer) >= self.batch_size:
-            batch = self.collate_fn(buffer[:self.batch_size])
-            buffer = buffer[self.batch_size:]
-            self.batch_queue.put(batch)
-            self._tracker.record_batch()
+    	# Flush remaining
+    	while len(buffer) >= self.batch_size:
+        	batch = self.collate_fn(buffer[:self.batch_size])
+        	buffer = buffer[self.batch_size:]
+        	self.batch_queue.put(batch)
+        	self._tracker.record_batch()
 
     def _default_collate(self, samples):
         """Stack tensors into a batch."""
@@ -117,7 +121,7 @@ class DataLoader:
         self._tracker = MetricsTracker(self.num_workers)
 
         for w in range(self.num_workers):
-            t = threading.Thread(target=self._worker, args=(w,))
+            t = threading.Thread(target=self._worker, args=(w,), name=f'worker-{w}')
             t.start()
             self._threads.append(t)
 
@@ -126,13 +130,19 @@ class DataLoader:
         self._threads.append(orch)
 
         return self
-
+    
     def __next__(self):
-        all_done = all(not t.is_alive() for t in self._threads)
-        if self.batch_queue.empty() and all_done:
-            self._cleanup()
-            raise StopIteration
-        return self.batch_queue.get()
+    	all_done = all(not t.is_alive() for t in self._threads)
+    	if self.batch_queue.empty() and all_done:
+        	self._cleanup()
+        	raise StopIteration
+    	try:
+        	return self.batch_queue.get(timeout=1.0)
+    	except Exception:
+        	if self.batch_queue.empty() and all(not t.is_alive() for t in self._threads):
+            		self._cleanup()
+            		raise StopIteration
+        	return self.batch_queue.get()  # Block until something arrives
 
     def _cleanup(self):
         """Stop threads and save metrics."""
