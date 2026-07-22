@@ -1,88 +1,111 @@
-# GPU Benchmarking & Storage Format Evaluation
+# Minimal Dependency Dataset Library for PyTorch
 
-Bachelor Project: *Minimal Dependency Dataset Library for PyTorch* — DFKI 2026.
+Bachelor Project — DFKI (German Research Center for Artificial Intelligence) | SS 2026
 
-## Overview
+## Project Description
 
-This repository contains tools to:
-1. Benchmark GPU compute delays across models and GPUs
-2. Build a dummy model for GPU-free data loading tests
-3. Evaluate storage formats for efficient data access
+Training large deep learning models on GPU clusters requires efficient data pipelines. When datasets reside on remote network storage, loading and preprocessing can become the primary bottleneck, leaving expensive GPUs underutilized. Existing solutions (WebDataset, MosaicML StreamingDataset, TFRecord) often require extensive dependencies and major changes to training code.
 
-## Files
+The goal of this project is to analyse performance bottlenecks in the data loading pipeline, then design and implement a simple library for storing and loading training data from a remote storage server. The library should be minimal — relying only on PyTorch and the Python standard library — while supporting multi-threaded loading, lock-free sampling, distributed training (DDP), and built-in instrumentation for performance profiling.
 
-### GPU Benchmarking
-| File                    | Purpose                                                                       |
-| ----------------------- | ----------------------------------------------------------------------------- |
-| `benchmark_gpu.py`      | Quick GPU delay measurement (~200 batches). Mean/std per model/GPU/optimizer. |
-| `calibrate_dummy.py`    | Deep GPU stability analysis (1000 batches). Anomaly detection.                |
-| `dummy_model.py`        | Simulates GPU compute delay without a GPU. Reads from `gpu_delays.json`.      |
-| `build_delay_config.py` | Generates `gpu_delays.json` from benchmark summary CSVs.                      |
-| `launch_benchmarks.py`  | SLURM job submission for all models × GPUs (original).                        |
-| `launch_arrays.py`      | SLURM job arrays (better priority) for missing benchmarks.                    |
-| `find_missing.py`       | Finds which GPU/model/optimizer/batch_size combos are missing.                |
-| `gpu_delays.json`       | Delay config for dummy model (auto-generated).                                |
+## Project Goals & Status
 
-### Training Baselines
-| File                     | Purpose                                             |
-| ------------------------ | --------------------------------------------------- |
-| `train_resnet50.py`      | ResNet-50 single GPU baseline. 75.69% val accuracy. |
-| `train_resnet50_ddp.py`  | DDP training on 2 GPUs. 95% scaling efficiency.     |
-| `analyze_dataloading.py` | Profiles data loading vs. compute time.             |
+| # | Goal | Status |
+|---|------|--------|
+| 1 | Train baseline model + profile data loading bottlenecks | Done |
+| 2 | Benchmark GPU compute delays across 10 GPU types (3,540 runs) | Done |
+| 3 | Build GPU simulator (Dummy Model) for GPU-free testing | Done |
+| 4 | Evaluate 6 storage formats for throughput, overhead, thread safety | Done |
+| 5 | Implement multi-threaded DataLoader with lock-free sampler | Done |
+| 6 | Add built-in instrumentation (MonitoredQueue + MetricsTracker) | Done |
+| 7 | Run benchmark sweep: 9 batch sizes × 6 worker counts, 100k images | Done |
+| 8 | Compare against PyTorch DataLoader on same hardware/data | Done |
+| 9 | Benchmark loading from remote storage (/ds-sds) | Pending |
+| 10 | Implement DDP sampler for multi-GPU training | Pending |
+| 11 | Upgrade worker pool to multiprocessing (bypass GIL limitation) | Pending |
+| 12 | Final report / thesis write-up | Pending |
 
-### Storage Format Benchmarks
-| File                        | Purpose                                                            |
-| --------------------------- | ------------------------------------------------------------------ |
-| `benchmark_plain.py`        | Baseline: plain JPEG files. 267 seq, 256 random samples/s.         |
-| `benchmark_zip.py`          | Zip (no compression). 342 seq, 233 random s/s. NOT thread-safe.    |
-| `benchmark_tar.py`          | Tar. 424 seq s/s. No true random access.                           |
-| `benchmark_lmdb.py`         | LMDB key-value store. 416 seq, 305 random s/s. Thread-safe.        |
-| `benchmark_parquet.py`      | Parquet columnar format. **473 seq, 474 random s/s.** Thread-safe. |
-| `benchmark_msgpack.py`      | Sharded binary blob + MessagePack index. 431 seq, 313 random s/s.  |
-| `write_lmdb.py` / `.sbatch` | Writer for LMDB format.                                            |
-| `file_io.py`                | BinaryReader/BinaryWriter for MessagePack format (tutor's code).   |
+## Key Results
 
-## Storage Format Results Summary
+### Storage Format Evaluation (100k images, tiny-imagenet, fscratch SSD)
 
-| Format      | Sequential (s/s) | Random (s/s) | Overhead | Thread-Safe |
-| ----------- | ---------------- | ------------ | -------- | ----------- |
-| Parquet     | **472.7**        | **473.7**    | -0.3%    | Yes         |
-| MessagePack | 431.4            | 312.9        | 0.0%     | Not Really  |
-| Tar         | 424.1            | N/A          | 1.5%     | Not Realy   |
-| LMDB        | 415.8            | 304.7        | 1.8%     | Yes         |
-| Zip         | 341.5            | 233.2        | 0.1%     | Not safe    |
-| Plain       | 266.6            | 255.9        | 0%       | Yes         |
+| Format | Sequential (img/s) | Random (img/s) | Overhead | Thread-Safe |
+|--------|-------------------|----------------|----------|-------------|
+| Parquet | 472.7 | 473.7 | -0.3% | Yes |
+| MessagePack | 431.4 | 312.9 | 0.0% | Conditional |
+| Tar | 424.1 | N/A | 1.5% | Sequential only |
+| LMDB | 415.8 | 304.7 | 1.8% | Yes |
+| Zip | 341.5 | 233.2 | 0.1% | No |
+| Plain JPEG | 266.6 | 255.9 | 0% | Yes |
 
-*100,000 images from tiny-imagenet on fscratch (SSD). Single-threaded.*
+### DataLoader Performance (Parquet, A100 CPU node, 100k images)
 
-## GPU Benchmark Results
+| Metric | Our DataLoader | PyTorch DataLoader |
+|--------|---------------|-------------------|
+| Peak Throughput | 1,787 samples/s (BS=512, 16w) | 2,865 samples/s (BS=512, 32w) |
+| Optimal Workers | 16 | 32 |
+| Scaling 1-16 workers | 6.5x | 9.8x |
+| Scaling 16-32 workers | Degrades (-10%) | Continues (+8%) |
+| Memory | 14-17 GB | 16 GB |
+| Dependencies | stdlib + torch | PyTorch only |
 
-10 GPU types, 16 model architectures, 3,540 runs total.
+### GPU Compute Delays (ResNet-50, batch_size=256, SGD)
 
-| GPU       | Models | Avg Delay (BS=256, SGD) |
-| --------- | ------ | ----------------------- |
-| H200      | 15     | 522 ms                  |
-| RTXB6000  | 15     | 537 ms                  |
-| RTX3090   | 5      | 569 ms                  |
-| H100      | 15     | 597 ms                  |
-| L40S      | 11     | 663 ms                  |
-| A100-40GB | 9      | 702 ms                  |
-| B200      | 16     | 711 ms                  |
-| A100-80GB | 13     | 829 ms                  |
-| RTXA6000  | 9      | 1,042 ms                |
-| A40       | 10     | 1,060 ms                |
+| GPU | Avg Delay (ms) | Models Tested |
+|-----|---------------|---------------|
+| H200 | 522 | 15 |
+| H100 | 597 | 15 |
+| RTXB6000 | 537 | 15 |
+| L40S | 663 | 11 |
+| A100-40GB | 702 | 9 |
+| B200 | 711 | 16 |
+| RTXA6000 | 1,042 | 9 |
 
-## Usage
+## Repository Structure
 
-```bash
-# GPU benchmark
-python3 benchmark_gpu.py --model resnet50 --batch-size 256 --optimizer sgd
-
-# Calibrate for dummy model
-python3 calibrate_dummy.py --model resnet50 --batch-size 256 --optimizer adam
-
-# Dummy model
-python3 dummy_model.py
-
-# Storage benchmark
-python3 benchmark_parquet.py
+bachelor-project/
+├── minimal_dataset/ # Library module
+│ ├── init.py # Public API
+│ ├── dataset.py # BaseDataset (ImageFolder reader)
+│ ├── parquet_dataset.py # ParquetDataset (Parquet reader)
+│ ├── sampler.py # LockFreeSampler (lock-free index partitioning)
+│ ├── dataloader.py # DataLoader (multi-threaded, staging + batch queues)
+│ ├── monitored_queue.py # MonitoredQueue (queue instrumentation)
+│ └── metrics.py # MetricsTracker + WorkerMetrics
+├── benchmarks/
+│ ├── gpu/ # GPU benchmarking & dummy model
+│ │ ├── benchmark_gpu.py
+│ │ ├── calibrate_dummy.py
+│ │ ├── dummy_model.py
+│ │ ├── build_delay_config.py
+│ │ └── gpu_delays.json
+│ └── storage/ # Storage format evaluation
+│ ├── benchmark_plain.py
+│ ├── benchmark_zip.py
+│ ├── benchmark_tar.py
+│ ├── benchmark_lmdb.py
+│ ├── benchmark_parquet.py
+│ ├── benchmark_msgpack.py
+│ └── file_io.py
+├── tests/ # DataLoader tests & benchmarks
+│ ├── test_dataloader.py
+│ ├── benchmark_dataloader.py
+│ ├── benchmark_pytorch.py
+│ ├── plot_comparison.py
+│ └── launch_full_benchmark.sh
+├── training/ # ResNet training scripts
+│ ├── train_resnet50.py
+│ ├── train_resnet50_ddp.py
+│ └── analyze_dataloading.py
+├── docs/
+│ ├── images/ # Architecture diagrams & benchmark plots
+│ │ ├── 00_MainOverview1.png
+│ │ ├── 02_dataLoader1.png
+│ │ ├── 04_Storage Format Evaluation.png
+│ │ ├── 05_GPU Compute Delay.png
+│ │ ├── plot_ours_throughput.png
+│ │ ├── plot_pytorch_throughput.png
+│ │ ├── plot_comparison_bs16.png
+│ │ └── plot_speedup_comparison.png
+│ └── architecture.md
+└── README.md
