@@ -47,7 +47,7 @@ The goal of this project is to analyse performance bottlenecks in the data loadi
 | Scaling 1-16 workers | 6.5x | 9.8x |
 | Scaling 16-32 workers | Degrades (-10%) | Continues (+8%) |
 | Memory | 14-17 GB | 16 GB |
-| Dependencies | stdlib + torch | PyTorch only |
+| Dependencies | stdlib + torch | PyTorch only (stdli + torch)|
 
 ### GPU Compute Delays (ResNet-50, batch_size=256, SGD)
 
