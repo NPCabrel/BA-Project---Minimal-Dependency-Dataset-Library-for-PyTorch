@@ -47,7 +47,7 @@ The goal of this project is to analyse performance bottlenecks in the data loadi
 | Scaling 1-16 workers | 6.5x | 9.8x |
 | Scaling 16-32 workers | Degrades (-10%) | Continues (+8%) |
 | Memory | 14-17 GB | 16 GB |
-| Dependencies | stdlib + torch | PyTorch only |
+| Dependencies | stdlib + torch | PyTorch only (stdli + torch)|
 
 ### GPU Compute Delays (ResNet-50, batch_size=256, SGD)
 
@@ -63,49 +63,49 @@ The goal of this project is to analyse performance bottlenecks in the data loadi
 
 ## Repository Structure
 
-bachelor-project/
-├── minimal_dataset/ # Library module
-│ ├── init.py # Public API
-│ ├── dataset.py # BaseDataset (ImageFolder reader)
-│ ├── parquet_dataset.py # ParquetDataset (Parquet reader)
-│ ├── sampler.py # LockFreeSampler (lock-free index partitioning)
-│ ├── dataloader.py # DataLoader (multi-threaded, staging + batch queues)
-│ ├── monitored_queue.py # MonitoredQueue (queue instrumentation)
-│ └── metrics.py # MetricsTracker + WorkerMetrics
-├── benchmarks/
-│ ├── gpu/ # GPU benchmarking & dummy model
-│ │ ├── benchmark_gpu.py
-│ │ ├── calibrate_dummy.py
-│ │ ├── dummy_model.py
-│ │ ├── build_delay_config.py
-│ │ └── gpu_delays.json
-│ └── storage/ # Storage format evaluation
-│ ├── benchmark_plain.py
-│ ├── benchmark_zip.py
-│ ├── benchmark_tar.py
-│ ├── benchmark_lmdb.py
-│ ├── benchmark_parquet.py
-│ ├── benchmark_msgpack.py
-│ └── file_io.py
-├── tests/ # DataLoader tests & benchmarks
-│ ├── test_dataloader.py
-│ ├── benchmark_dataloader.py
-│ ├── benchmark_pytorch.py
-│ ├── plot_comparison.py
-│ └── launch_full_benchmark.sh
-├── training/ # ResNet training scripts
-│ ├── train_resnet50.py
-│ ├── train_resnet50_ddp.py
-│ └── analyze_dataloading.py
-├── docs/
-│ ├── images/ # Architecture diagrams & benchmark plots
-│ │ ├── 00_MainOverview1.png
-│ │ ├── 02_dataLoader1.png
-│ │ ├── 04_Storage Format Evaluation.png
-│ │ ├── 05_GPU Compute Delay.png
-│ │ ├── plot_ours_throughput.png
-│ │ ├── plot_pytorch_throughput.png
-│ │ ├── plot_comparison_bs16.png
-│ │ └── plot_speedup_comparison.png
-│ └── architecture.md
-└── README.md
+bachelor-project/                                                                                                                                                                                                                                                             
+├── minimal_dataset/ # Library module                                                                                                                                                                                                                                        
+│ ├── init.py # Public API                                                                                                                                                                                                                                                
+│ ├── dataset.py # BaseDataset (ImageFolder reader)                                                                                                                                                                                              
+│ ├── parquet_dataset.py # ParquetDataset (Parquet reader)                                                                                                                                         
+│ ├── sampler.py # LockFreeSampler (lock-free index partitioning)                                                                                                                                                  
+│ ├── dataloader.py # DataLoader (multi-threaded, staging + batch queues)                                                                                                                                                  
+│ ├── monitored_queue.py # MonitoredQueue (queue instrumentation)                                                                                                                  
+│ └── metrics.py # MetricsTracker + WorkerMetrics                                                                                                                                                                                                  
+├── benchmarks/                                                                                                                                                                                                                
+│ ├── gpu/ # GPU benchmarking & dummy model                                                                                                                                                              
+│ │ ├── benchmark_gpu.py                                                                                                                                                                                                                              
+│ │ ├── calibrate_dummy.py                                                                                                                                                                                                         
+│ │ ├── dummy_model.py                                                                                                                                                                                                                      
+│ │ ├── build_delay_config.py                                                                                                                                                                                                                  
+│ │ └── gpu_delays.json                                                                                                                                                                               
+│ └── storage/ # Storage format evaluation                                                                                                                                                                                                                           
+│ ├── benchmark_plain.py                                                                                                                                                                                       
+│ ├── benchmark_zip.py                                                                                                                                                                                                                                 
+│ ├── benchmark_tar.py                                                                                                                                                                                       
+│ ├── benchmark_lmdb.py                                                                                                                                                           
+│ ├── benchmark_parquet.py                                                                                                                                                                                                         
+│ ├── benchmark_msgpack.py                                                                                                                                                                                                     
+│ └── file_io.py                                                                                                                                                                                       
+├── tests/ # DataLoader tests & benchmarks                                                                                                                                                                                                  
+│ ├── test_dataloader.py                                                                                                                                                                                                                            
+│ ├── benchmark_dataloader.py                                                                                                                                                                                                                                                 
+│ ├── benchmark_pytorch.py                                                                                                                                                                                                                                                   
+│ ├── plot_comparison.py                                                                                                                                                                                                                         
+│ └── launch_full_benchmark.sh                                                                                                                                                                                                         
+├── training/ # ResNet training scripts                                                                                                                                                                                                                            
+│ ├── train_resnet50.py                                                                                                                                                                                                                                   
+│ ├── train_resnet50_ddp.py                                                                                                                                                                                                     
+│ └── analyze_dataloading.py                                                                                                                                                                                                                           
+├── docs/                                                                                                                                                                                                                                                  
+│ ├── images/ # Architecture diagrams & benchmark plots                                                                                                                                                                                                                  
+│ │ ├── 00_MainOverview1.png                                                                                                                                                                                                                      
+│ │ ├── 02_dataLoader1.png                                                                                                                                                                                                                                                    
+│ │ ├── 04_Storage Format Evaluation.png                                                                                                                                                                                            
+│ │ ├── 05_GPU Compute Delay.png                                                                                                                                                                                                                
+│ │ ├── plot_ours_throughput.png                                                                                                                                                                                                                           
+│ │ ├── plot_pytorch_throughput.png                                                                                                                                                                                                                    
+│ │ ├── plot_comparison_bs16.png                                                                                                                                                                                                                        
+│ │ └── plot_speedup_comparison.png                                                                                                                                                                                                              
+│ └── architecture.md                                                                                                                                                                       
+└── README.md                                                                                                                 
